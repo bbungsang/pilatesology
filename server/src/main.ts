@@ -1,8 +1,11 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import { config } from './shared/config/config'
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+const bootstrap = async () => {
+  const app = await NestFactory.create(AppModule)
+  await app.listen(20821, '0.0.0.0')
+  console.log(`[${new Date().toISOString()}] Server listening on port [20821] [${config.env}] mode!`)
 }
-bootstrap();
+
+(async () => await bootstrap())()
